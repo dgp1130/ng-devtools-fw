@@ -1,0 +1,16 @@
+{
+  "name": "ng-devtools-fw",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "npm run -s build && npm run -s serve",
+    "build": "npm run -s build:ts && npm run -s build:html",
+    "build:ts": "tsc",
+    "build:html": "cp src/index.html dist/index.html",
+    "serve": "http-server dist/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "typescript": "^5.7.2"
+  }
+}

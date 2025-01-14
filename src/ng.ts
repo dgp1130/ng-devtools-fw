@@ -35,11 +35,6 @@ export const ng = {
                 .filter(([_prop, descriptor]) => !(descriptor.value instanceof EffectHandle))
                 .map(([prop]) => ({[prop]: prop}))
                 .reduce((l, r) => ({...l, ...r}), {}),
-            state: properties
-                .filter(([prop]) => prop.startsWith('_'))
-                .filter(([_prop, descriptor]) => !(descriptor.value instanceof EffectHandle))
-                .map(([prop]) => ({[prop]: prop}))
-                .reduce((l, r) => ({...l, ...r}), {}),
             effects: properties
                 .filter(([_prop, descriptor]) => descriptor.value instanceof EffectHandle)
                 .map(([_prop, descriptor]) => (descriptor.value as EffectHandle).stack)
@@ -48,6 +43,7 @@ export const ng = {
                 .filter((effectRef): effectRef is string => Boolean(effectRef)),
             encapsulation: ViewEncapsulation.Emulated,
             changeDetection: ChangeDetectionStrategy.Default,
+            framework: Framework.Wiz,
         };
     },
 
@@ -68,8 +64,8 @@ interface DirectiveDebugMetadata {
     inputs: Record<string, string>;
     outputs: Record<string, string>;
     props: Record<string, string>;
-    state: Record<string, string>;
     effects: string[];
+    framework: Framework;
 }
 
 // Forked from Angular internals.
@@ -88,6 +84,11 @@ enum ViewEncapsulation {
 enum ChangeDetectionStrategy {
     OnPush = 0,
     Default = 1,
+}
+
+enum Framework {
+    Angular = 0,
+    Wiz = 1,
 }
 
 /**

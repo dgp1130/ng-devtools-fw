@@ -3,7 +3,7 @@ import './my-other-comp.js';
 import { effect } from './effect.js';
 
 export class MyComp extends HTMLElement {
-    public name = 'test';
+    public _name = 'test';
 
     private readonly log = effect(() => {
         console.log('Hello, world!');
@@ -16,7 +16,7 @@ export class MyComp extends HTMLElement {
     // Using a GOAT-inspired rendering engine. :)
     public render(): void {
         this.innerHTML = `
-            <div>Name: ${this.name}</div>
+            <div>Name: ${this._name}</div>
             <my-other-comp></my-other-comp>
         `;
     }

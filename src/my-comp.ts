@@ -1,7 +1,13 @@
 import './my-other-comp.js';
 
+import { effect } from './effect.js';
+
 export class MyComp extends HTMLElement {
     public name = 'test';
+
+    private readonly log = effect(() => {
+        console.log('Hello, world!');
+    });
 
     public connectedCallback(): void {
         this.render();

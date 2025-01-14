@@ -1,3 +1,4 @@
+import './my-lit-comp.js';
 import './my-other-comp.js';
 
 import { effect } from './effect.js';
@@ -18,6 +19,7 @@ export class MyComp extends HTMLElement {
         this.innerHTML = `
             <div>Name: ${this._name}</div>
             <my-other-comp></my-other-comp>
+            <my-lit-comp></my-lit-comp>
         `;
     }
 }
